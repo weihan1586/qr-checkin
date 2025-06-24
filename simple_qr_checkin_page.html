@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Check-In</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    .container { max-width: 400px; margin: auto; }
+    #welcomeMsg { display: none; color: green; font-weight: bold; margin-top: 20px; }
+    #checkinBtn { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to the Event</h2>
+    <p id="attendeeName">Hello, <strong>[Name]</strong></p>
+    <button id="checkinBtn" onclick="checkIn()">Check In</button>
+    <p id="welcomeMsg">✅ You are now checked in. Welcome!</p>
+  </div>
+
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function checkIn() {
+      document.getElementById("checkinBtn").style.display = "none";
+      document.getElementById("welcomeMsg").style.display = "block";
+    }
+
+    // Example name mapping for demo purposes
+    const nameMap = {
+      "100001": "Alice Tan",
+      "100002": "Bob Lee",
+      "100003": "Carmen Lim"
+    };
+
+    const qr = getQueryParam("qr");
+    const name = nameMap[qr] || "Guest";
+    document.getElementById("attendeeName").innerHTML = `Hello, <strong>${name}</strong>`;
+  </script>
+</body>
+</html>
